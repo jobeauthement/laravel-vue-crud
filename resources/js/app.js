@@ -36,25 +36,36 @@
  * scaffolding. Otherwise, you will need to add an element yourself.
  */
 
+// Importing the createApp function from Vue.js. This function is used to create a new instance of a Vue app.
 import { createApp } from "vue";
+
+// Importing functions related to Vue Router. createRouter is used to define a new router, and createWebHistory is used for browser history mode.
 import { createRouter, createWebHistory } from "vue-router";
 
-// Import components
-import App from "./components/App.vue";
-import ProductList from "./components/ProductList.vue";
-import ProductForm from "./components/ProductForm.vue";
-import Product from "./components/Product.vue";
+// Importing Vue components that will be used in the application.
+import App from "./components/App.vue"; // Main App component
+import ProductList from "./components/ProductList.vue"; // Component to display a list of products
+import ProductForm from "./components/ProductForm.vue"; // Component for adding and editing products
+import Product from "./components/Product.vue"; // Component to display a single product
 
+// Creating a new router instance. This defines the different paths of the application and maps them to their respective components.
 const router = createRouter({
+    // Setting the router to use "history" mode, which eliminates the need for "#" in URLs.
     history: createWebHistory(),
+    // Defining the routes for the application.
     routes: [
-        { path: "/", component: ProductList },
-        { path: "/products/create", component: ProductForm },
-        { path: "/products/:id", component: Product },
-        { path: "/products/:id/edit", component: ProductForm },
+        { path: "/", component: ProductList }, // Root path displays the product list
+        { path: "/products/create", component: ProductForm }, // Path for adding a new product
+        { path: "/products/:id", component: Product }, // Dynamic path for displaying a single product based on its ID
+        { path: "/products/:id/edit", component: ProductForm }, // Dynamic path for editing a product based on its ID
     ],
 });
 
+// Creating a new Vue app instance using the main App component.
 const app = createApp(App);
+
+// Making the Vue app use the router we defined earlier. This integrates Vue Router with the app.
 app.use(router);
+
+// Mounting the Vue app to a DOM element with the id of "app". This is where the Vue app will render its content.
 app.mount("#app");
